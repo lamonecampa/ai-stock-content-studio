@@ -1,0 +1,92 @@
+[
+  {
+    "date": "2026-11-10",
+    "event": "Hari Pahlawan Indonesia",
+    "market": "Indonesia",
+    "ideas": [
+      "education history",
+      "memorial concepts",
+      "community"
+    ]
+  },
+  {
+    "date": "2026-11-25",
+    "event": "Hari Guru Indonesia",
+    "market": "Indonesia",
+    "ideas": [
+      "teachers",
+      "classroom",
+      "education"
+    ]
+  },
+  {
+    "date": "2026-11-26",
+    "event": "Thanksgiving",
+    "market": "United States",
+    "ideas": [
+      "food styling",
+      "family gathering",
+      "autumn"
+    ]
+  },
+  {
+    "date": "2026-12-25",
+    "event": "Christmas Day",
+    "market": "Global / country-specific",
+    "ideas": [
+      "gift packaging",
+      "decorations",
+      "seasonal backgrounds"
+    ]
+  },
+  {
+    "date": "2026-12-31",
+    "event": "New Year's Eve",
+    "market": "Global",
+    "ideas": [
+      "celebration",
+      "countdown",
+      "fresh start"
+    ]
+  },
+  {
+    "date": "2027-01-01",
+    "event": "New Year's Day",
+    "market": "Global",
+    "ideas": [
+      "planning",
+      "goals",
+      "wellness"
+    ]
+  },
+  {
+    "date": "2027-02-14",
+    "event": "Valentine's Day",
+    "market": "Many markets",
+    "ideas": [
+      "gifting",
+      "flowers",
+      "romantic product styling"
+    ]
+  },
+  {
+    "date": "2027-03-08",
+    "event": "International Women's Day",
+    "market": "Global",
+    "ideas": [
+      "women in business",
+      "leadership",
+      "education"
+    ]
+  },
+  {
+    "date": "2027-04-22",
+    "event": "Earth Day",
+    "market": "Global",
+    "ideas": [
+      "sustainability",
+      "renewable energy",
+      "conservation"
+    ]
+  }
+]
