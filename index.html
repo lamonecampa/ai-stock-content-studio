@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI Stock Content Studio - prompt generator, metadata helper, dan pemeriksaan teknis aset stock.">
+  <meta name="theme-color" content="#111827">
+  <title>AI Stock Content Studio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">✦</span><span>AI STOCK <b>STUDIO</b></span></a>
+    <span class="version">BETA · v1.0</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">CREATE · OPTIMIZE · PUBLISH</div>
+      <h1>AI Stock Content Studio</h1>
+      <p>Satu workspace untuk merancang prompt gambar komersial, menyiapkan metadata, dan memeriksa spesifikasi file sebelum dikirim ke marketplace stock.</p>
+      <div class="hero-tags"><span>Multi-category</span><span>6–8 MP target</span><span>Adobe Stock workflow</span></div>
+    </section>
+
+    <nav class="tabs" aria-label="Menu utama">
+      <button class="tab active" data-tab="generator">Prompt Generator</button>
+      <button class="tab" data-tab="metadata">Metadata</button>
+      <button class="tab" data-tab="qc">Image QC</button>
+      <button class="tab" data-tab="calendar">Trend & Events</button>
+      <button class="tab" data-tab="guide">Panduan</button>
+    </nav>
+
+    <section id="panel-generator" class="panel active">
+      <div class="section-heading"><div><div class="eyebrow">01 / CREATIVE WORKFLOW</div><h2>Bangun prompt gambar</h2><p>Isi konsep utama. Detail visual lain akan disusun otomatis oleh generator.</p></div></div>
+      <div class="form-grid">
+        <label class="field wide">Konsep utama
+          <textarea id="concept" rows="3" placeholder="Contoh: luxury perfume bottle inspired by dragon fruit, magenta crystal glass..."></textarea>
+        </label>
+        <label class="field">Kategori
+          <select id="category">
+            <option value="Product & Advertising">Product & Advertising</option>
+            <option value="Business & Finance">Business & Finance</option>
+            <option value="Technology & AI">Technology & AI</option>
+            <option value="Health & Wellness">Health & Wellness</option>
+            <option value="Nature & Environment">Nature & Environment</option>
+            <option value="Education & People">Education & People</option>
+            <option value="Background & Abstract">Background & Abstract</option>
+            <option value="Seasonal & Events">Seasonal & Events</option>
+          </select>
+        </label>
+        <label class="field">Gaya visual
+          <select id="style">
+            <option>Photorealistic commercial photography</option>
+            <option>Minimalist product photography</option>
+            <option>Editorial lifestyle photography</option>
+            <option>Premium 3D illustration</option>
+            <option>Conceptual surreal artwork</option>
+            <option>Clean vector illustration</option>
+          </select>
+        </label>
+        <label class="field">Komposisi
+          <select id="composition">
+            <option>Balanced composition with useful negative space</option>
+            <option>Centered hero subject</option>
+            <option>Three-quarter product view</option>
+            <option>Close-up macro detail</option>
+            <option>Top-down flat lay</option>
+            <option>Wide environmental composition</option>
+          </select>
+        </label>
+        <label class="field">Rasio
+          <select id="ratio"><option>4:5</option><option>3:4</option><option>1:1</option><option>16:9</option><option>9:16</option></select>
+        </label>
+        <label class="field">Target resolusi
+          <select id="resolution"><option>6–8 megapixels</option><option>4 megapixels minimum</option><option>10–15 megapixels</option></select>
+        </label>
+        <label class="field">Latar / suasana
+          <input id="background" placeholder="Contoh: warm mauve luxury studio, clean white background">
+        </label>
+        <label class="field">Elemen pendukung
+          <input id="props" placeholder="Contoh: sliced dragon fruit, green leaves, marble pedestal">
+        </label>
+      </div>
+      <div class="actions">
+        <button class="primary" id="generate">Generate complete prompt</button>
+        <button class="secondary" id="clear">Reset</button>
+      </div>
+      <div id="promptWrap" class="output hidden">
+        <div class="output-head"><div><span class="eyebrow">GENERATED PROMPT</span><h3>Prompt siap salin ke ChatGPT</h3></div><button class="secondary small" id="copyPrompt">Copy prompt</button></div>
+        <textarea id="promptOutput" rows="20" readonly></textarea>
+        <p class="note">Website ini menyusun prompt. Untuk menghasilkan gambar, salin prompt ke ChatGPT atau layanan image generator yang Anda gunakan.</p>
+      </div>
+    </section>
+
+    <section id="panel-metadata" class="panel">
+      <div class="section-heading"><div><div class="eyebrow">02 / STOCK DISCOVERY</div><h2>Metadata assistant</h2><p>Buat draf title dan keyword berdasarkan deskripsi yang Anda masukkan. Periksa kembali relevansinya dengan gambar aktual.</p></div></div>
+      <label class="field">Deskripsi gambar<textarea id="metaDescription" rows="3" placeholder="Jelaskan objek utama, warna, material, suasana, dan konteks gambar."></textarea></label>
+      <div class="actions"><button class="primary" id="makeMeta">Buat metadata</button></div>
+      <div id="metadataOutput" class="output hidden">
+        <label class="field">English stock title<input id="metaTitle" readonly></label>
+        <label class="field">Keywords<textarea id="metaKeywords" rows="5" readonly></textarea></label>
+        <button class="secondary" id="copyMeta">Copy metadata</button>
+      </div>
+    </section>
+
+    <section id="panel-qc" class="panel">
+      <div class="section-heading"><div><div class="eyebrow">03 / TECHNICAL REVIEW</div><h2>Image quality control</h2><p>Periksa dimensi dan format file secara lokal di browser. File tidak diunggah ke server.</p></div></div>
+      <label class="upload-box" for="imageFile"><span class="upload-icon">＋</span><b>Pilih gambar untuk diperiksa</b><span>JPEG, PNG, WebP · pemeriksaan lokal</span><input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+      <div id="qcResult" class="qc-result hidden"></div>
+      <div class="checklist">
+        <h3>Checklist visual manual</h3>
+        <div id="qcChecks"></div>
+      </div>
+      <p class="note">Pemeriksaan otomatis hanya membaca format dan dimensi. Browser tidak dapat memastikan bebas artefak AI, legalitas, ketajaman cetak, atau kelayakan moderasi Adobe Stock.</p>
+    </section>
+
+    <section id="panel-calendar" class="panel">
+      <div class="section-heading"><div><div class="eyebrow">04 / CONTENT PLANNING</div><h2>Trend & event planner</h2><p>Starter calendar untuk ide produksi. Tanggal dan peluang pasar harus diverifikasi sebelum digunakan.</p></div></div>
+      <div class="callout"><b>Prinsip:</b> produksi aset musiman beberapa minggu atau bulan sebelum event. Tren bukan jaminan unduhan atau penjualan.</div>
+      <div id="eventList" class="event-list"></div>
+      <h3 class="subheading">Tema kreatif untuk eksplorasi</h3>
+      <div class="trend-grid">
+        <article><b>Human connection</b><p>Relasi, komunitas, empati, aktivitas sehari-hari.</p></article>
+        <article><b>Immersive textures</b><p>Material tactile, close-up, tekstur dan detail.</p></article>
+        <article><b>Playful surrealism</b><p>Konsep tak biasa dengan eksekusi visual yang rapi.</p></article>
+        <article><b>Local identity</b><p>Kuliner, kerajinan, budaya dan konteks lokal.</p></article>
+      </div>
+    </section>
+
+    <section id="panel-guide" class="panel">
+      <div class="section-heading"><div><div class="eyebrow">05 / DOCUMENTATION</div><h2>Panduan penggunaan</h2></div></div>
+      <ol class="guide-list">
+        <li>Pilih kategori dan tulis satu konsep spesifik.</li>
+        <li>Atur gaya visual, komposisi, rasio, latar, dan properti.</li>
+        <li>Generate prompt lalu salin ke ChatGPT atau generator gambar.</li>
+        <li>Periksa hasil visual secara kritis. Jangan menganggap prompt menjamin hasil sempurna.</li>
+        <li>Gunakan Image QC untuk mengecek dimensi dan format file.</li>
+        <li>Siapkan title dan keyword yang benar-benar sesuai dengan gambar final.</li>
+        <li>Untuk Adobe Stock, ikuti ketentuan terbaru dan tandai konten generatif AI saat upload jika memang dibuat dengan AI.</li>
+      </ol>
+      <div class="callout warning"><b>Batasan versi 1.0:</b> belum terhubung ke Adobe Stock, tidak membaca volume pencarian keyword, tidak mengirim gambar otomatis ke generator, dan tidak menjamin lolos moderasi. Semua output metadata adalah draf untuk ditinjau.</div>
+    </section>
+
+    <footer>AI Stock Content Studio · Static GitHub Pages starter · v1.0</footer>
+  </main>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
