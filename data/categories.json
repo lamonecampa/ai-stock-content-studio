@@ -1,0 +1,85 @@
+[
+  {
+    "id": "product",
+    "name": "Product & Advertising",
+    "examples": [
+      "perfume",
+      "skincare",
+      "food and beverage",
+      "electronics",
+      "packaging"
+    ]
+  },
+  {
+    "id": "business",
+    "name": "Business & Finance",
+    "examples": [
+      "office",
+      "fintech",
+      "startup",
+      "remote work",
+      "commerce"
+    ]
+  },
+  {
+    "id": "technology",
+    "name": "Technology & AI",
+    "examples": [
+      "artificial intelligence",
+      "IoT",
+      "robotics",
+      "cybersecurity",
+      "cloud computing"
+    ]
+  },
+  {
+    "id": "health",
+    "name": "Health & Wellness",
+    "examples": [
+      "fitness",
+      "nutrition",
+      "wellness",
+      "healthy lifestyle"
+    ]
+  },
+  {
+    "id": "nature",
+    "name": "Nature & Environment",
+    "examples": [
+      "renewable energy",
+      "water",
+      "agriculture",
+      "biodiversity"
+    ]
+  },
+  {
+    "id": "education",
+    "name": "Education & People",
+    "examples": [
+      "classroom",
+      "learning",
+      "teachers",
+      "students"
+    ]
+  },
+  {
+    "id": "abstract",
+    "name": "Background & Abstract",
+    "examples": [
+      "texture",
+      "pattern",
+      "3D background",
+      "gradient"
+    ]
+  },
+  {
+    "id": "seasonal",
+    "name": "Seasonal & Events",
+    "examples": [
+      "holidays",
+      "festivals",
+      "celebrations",
+      "campaigns"
+    ]
+  }
+]
