@@ -30,7 +30,7 @@ async function verifyTurnstile(token, secret, ip) {
   return {ok:!!result.success, reason:"Verifikasi keamanan gagal."};
 }
 function imageSize(ratio) {
-  return ({ "1:1":"1024x1024", "4:5":"1024x1280", "3:4":"1024x1360", "9:16":"1024x1792", "16:9":"1536x1024" })[ratio] || "1024x1536";
+  return ({ "1:1":"1024x1024", "4:5":"1024x1280", "3:4":"1008x1344", "9:16":"1008x1792", "16:9":"1536x864" })[ratio] || "1024x1536";
 }
 export default {
   async fetch(request, env) {
