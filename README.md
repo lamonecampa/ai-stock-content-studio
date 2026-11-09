@@ -1,40 +1,42 @@
 # AI Stock Content Studio
 
-Static website starter for planning AI-generated commercial stock imagery.
+Static GitHub Pages workspace for stock contributors. Includes prompt planning, metadata drafts, basic image QC, and **Photo Lab**, a non-generative batch photo correction workflow.
 
-## Features (v1.0)
-- Multi-category prompt generator
-- Prompt copy-to-clipboard
-- Basic English title and keyword draft helper
-- Local image technical check (dimensions, megapixels, file size, format)
-- Manual visual quality checklist
-- Starter trend themes and seasonal/event planner
-- Responsive layout for desktop and mobile
+## Photo Lab v2.0
 
-## Deploy to GitHub Pages
-1. Create a GitHub repository, for example `ai-stock-content-studio`.
-2. Upload all files and folders from this project. Keep `index.html` in the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select branch `main` and folder `/ (root)`, then save.
-6. Wait for GitHub Pages to publish the site.
-
-## Run locally
-Open `index.html` in a modern browser. For clipboard support and best local behavior, use a local static server or GitHub Pages.
+- Add multiple local images in one batch.
+- Basic checks for pixel dimensions, megapixels, file size, and file type.
+- Select Adobe Stock, Shutterstock, or combined technical checks.
+- Per-image adjustments: brightness, contrast, saturation, warmth, and restrained sharpening.
+- Preview corrections before export.
+- Export one photo or the full batch as JPEG quality 95.
+- Original files are never overwritten; processing happens in the browser.
+- No image-generation API, AI reconstruction, object replacement, face modification, or generative fill.
 
 ## Important limitations
-- This is a static front-end. It does not call an image-generation API.
-- The generated prompt must be copied into ChatGPT or another image-generation tool.
-- Metadata generation is a simple draft helper, not keyword-volume research.
-- Image QC reads pixel dimensions, megapixels, file size, and MIME type in the browser. It does not verify embedded ICC/sRGB profile, visual defects, legal rights, or Adobe Stock acceptance.
-- Event data is a starter list. Verify dates, observances, market relevance, and official calendars before producing assets.
-- Adobe Stock requirements can change. Check current contributor documentation before submission.
 
-## Suggested next versions
-- v1.1: searchable prompt templates and editable event calendar
-- v1.2: ICC profile inspection and richer visual QC workflow
-- v2.0: persistent local project library and batch metadata export
-- v3.0: optional external trend/keyword data integrations
+- Technical checks are not an acceptance guarantee. Marketplace moderation also evaluates focus, noise, artifacts, composition, commercial value, releases, trademarks, copyright, and other legal requirements.
+- Blur, noise, dust, banding, and AI artifacts still require inspection at 100% zoom. This app does not claim to classify them reliably.
+- ICC/sRGB profile verification is not implemented. Canvas export creates a new JPEG and may remove EXIF/IPTC metadata. Keep the original and restore metadata/keywords in your normal submission workflow.
+- Browser support for TIFF varies. If a TIFF cannot be decoded by the browser, convert it with a trusted desktop photo editor before loading.
+- The Adobe Stock technical ceiling is 100 MP and 45 MB; both platforms have a 4 MP minimum. Shutterstock's accepted formats include JPEG and TIFF, and sRGB is recommended. Check current official documentation because requirements can change.
+- Corrections are deliberately conservative. Excessive sharpening, saturation, or contrast can introduce artifacts and increase rejection risk.
+- A compliant file is not automatically commercially useful or accepted.
 
-## License
-Choose a license before public distribution. If unsure, keep the repository private until you decide.
+## Official references
+
+- [Adobe Stock photo technical and legal requirements](https://helpx.adobe.com/stock/contributor/submit-your-content/submit-photos/technical-legal-requirements-photo-submission.html)
+- [Adobe Stock quality and technical standards](https://helpx.adobe.com/stock/contributor/content-moderation/quality-technical-standards-reasons-content-refusal.html)
+- [Shutterstock photo and video quality requirements](https://submit.shutterstock.com/help/en/articles/10594682-photo-and-video-quality-requirements)
+- [Shutterstock technical requirements for images](https://submit.shutterstock.com/help/en/articles/10617390-what-are-the-technical-requirements-for-images)
+
+## Deploy to GitHub Pages
+
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Select branch `main` and folder `/ (root)`.
+4. Save and wait for the Pages deployment to finish.
+
+## Run locally
+
+Open `index.html` in a modern browser. Local processing uses browser APIs; no image upload endpoint or backend is required.
