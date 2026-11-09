@@ -17,7 +17,7 @@
       if(!supported(file)){continue}
       try{
         const bitmap=await imageFrom(file);
-        const data={id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),file,bitmap,w:bitmap.width,h:bitmap.height};
+        const data={id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),file,bitmap,w:bitmap.width,h:bitmap.height,settings:{...defaults}};
         state.files.push(data);
         state.selected=state.files.length-1;
       }catch(e){console.warn('Tidak dapat membaca',file.name,e)}
@@ -51,7 +51,7 @@
     const d=state.files[state.selected]; if(!d){$('pl-editor').classList.add('pl-hidden');return}
     $('pl-editor').classList.remove('pl-hidden');
     const r=inspect(d);
-    $('pl-filename').textContent=d.file.name;
+    settings={...d.settings};\n    $('pl-filename').textContent=d.file.name;
     $('pl-preview').src=state.urls.get(d.id);
     $('pl-metrics').innerHTML='<div class="pl-metric"><b>'+d.w+' × '+d.h+'</b><span>Dimensi piksel</span></div><div class="pl-metric"><b>'+r.m.toFixed(2)+' MP</b><span>Megapiksel</span></div><div class="pl-metric"><b>'+(d.file.size/1048576).toFixed(2)+' MB</b><span>Ukuran asli</span></div><div class="pl-metric"><b>'+d.file.type+'</b><span>MIME type</span></div>';
     $('pl-issues').innerHTML=(r.issues.length?r.issues.map(x=>'<li>'+escapeHtml(x)+'</li>').join(''):'<li>Dimensi dan ukuran memenuhi pemeriksaan dasar terpilih.</li>')+'<li>Periksa fokus, noise, exposure, banding, debu sensor, komposisi, logo, dan hak penggunaan secara visual.</li>';
@@ -63,18 +63,18 @@
     const max=1400, scale=Math.min(1,max/Math.max(d.w,d.h));
     const c=$('pl-canvas');c.width=Math.round(d.w*scale);c.height=Math.round(d.h*scale);
     const ctx=c.getContext('2d',{willReadFrequently:true});
-    ctx.filter='brightness('+(100+settings.brightness)+'%) contrast('+(100+settings.contrast)+'%) saturate('+(100+settings.saturation)+'%) sepia('+(Math.max(0,settings.warmth)/200)+') hue-rotate('+(-settings.warmth/3)+'deg)';
+    ctx.filter='brightness('+(100+s.brightness)+'%) contrast('+(100+s.contrast)+'%) saturate('+(100+s.saturation)+'%) sepia('+(Math.max(0,s.warmth)/200)+') hue-rotate('+(-settings.warmth/3)+'deg)';
     ctx.drawImage(d.bitmap,0,0,c.width,c.height);ctx.filter='none';
-    if(settings.sharpness>0){
+    if(s.sharpness>0){
       const amount=settings.sharpness/100, img=ctx.getImageData(0,0,c.width,c.height), src=new Uint8ClampedArray(img.data), w=c.width,h=c.height;
       for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const p=(y*w+x)*4;for(let ch=0;ch<3;ch++){const v=src[p+ch]* (1+4*amount)-amount*(src[p-4+ch]+src[p+4+ch]+src[p-w*4+ch]+src[p+w*4+ch]);img.data[p+ch]=Math.max(0,Math.min(255,v))}}
       ctx.putImageData(img,0,0);
     }
   }
   function bindControls(){
-    controls.forEach(k=>{$('pl-'+k).addEventListener('input',e=>{settings[k]=+e.target.value;$('pl-'+k+'-v').textContent=settings[k];drawPreview()})});
+    controls.forEach(k=>{$('pl-'+k).addEventListener('input',e=>{settings[k]=+e.target.value;const d=state.files[state.selected];if(d)d.settings[k]=settings[k];$('pl-'+k+'-v').textContent=settings[k];drawPreview()})});
     $('pl-platform').onchange=()=>{render()};
-    $('pl-reset').onclick=()=>{settings={...defaults};renderEditor()};
+    $('pl-reset').onclick=()=>{settings={...defaults};const d=state.files[state.selected];if(d)d.settings={...defaults};renderEditor()};
     $('pl-apply-all').onclick=()=>{if(state.selected<0)return;const active=state.files[state.selected];state.files.forEach(d=>{if(d.id!==active.id){} });alert('Pengaturan diterapkan saat ekspor ke semua foto yang dipilih dalam daftar. Foto asli tetap tidak berubah.');};
   }
   async function exportOne(d){
