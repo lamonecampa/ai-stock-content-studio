@@ -133,4 +133,4 @@ const events = [
   ["8 Mar 2027","International Women's Day","Women in business, leadership, education, empowerment."],
   ["22 Apr 2027","Earth Day","Sustainability, renewable energy, conservation, nature."]
 ];
-$("eventList").innerHTML = events.map(e=>`<article class="event-card"><div class="event-date">${e[0]}</div><h3>${e[1]}</h3><p>${e[2]}</p></article>`).join("");
+$("eventList").innerHTML = events.map(e=>`<article class="event-card"><div class="event-date">${e[0]}</div><h3>${e[1]}</h3><p>${e[2]}</p><button class="secondary small" type="button" data-generate-event="${e[1]}" data-event-description="${e[2]}">✦ Buat gambar</button></article>`).join("");
