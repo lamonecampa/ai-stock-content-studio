@@ -58,7 +58,10 @@
       for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const p=(y*w+x)*4;for(let ch=0;ch<3;ch++){const v=src[p+ch]*(1+4*amount)-amount*(src[p-4+ch]+src[p+4+ch]+src[p-w*4+ch]+src[p+w*4+ch]);img.data[p+ch]=Math.max(0,Math.min(255,v))}}
       ctx.putImageData(img,0,0);
     }
-    const resultUrl=c.toDataURL('image/jpeg',0.92);\n    $('pl-preview').src=resultUrl;\n    $('pl-compare-result').src=resultUrl;\n    $('pl-compare-original').src=state.urls.get(d.id);
+    const resultUrl=c.toDataURL('image/jpeg',0.92);
+    $('pl-preview').src=resultUrl;
+    $('pl-compare-result').src=resultUrl;
+    $('pl-compare-original').src=state.urls.get(d.id);
   }
   function bind(){
     controls.forEach(k=>$('pl-'+k).addEventListener('input',e=>{settings[k]=+e.target.value;const d=state.files[state.selected];if(d)d.settings[k]=settings[k];$('pl-'+k+'-v').textContent=settings[k];drawPreview()}));
