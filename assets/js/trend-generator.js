@@ -4,7 +4,7 @@
   let selectedEvent = null, lastPrompt = "", image = null, logo = null, captchaWidget = null, captchaToken = "";
   const status = (message, kind="info") => { const el=$("tg-status"); el.textContent=message; el.dataset.kind=kind; };
   const platformNames = {instagram:"Instagram",tiktok:"TikTok",facebook:"Facebook",youtube:"YouTube",stock:"Stock image"};
-  const sizeMap = {"1:1":"1024 × 1024","4:5":"1024 × 1280","3:4":"1024 × 1360","9:16":"1024 × 1792","16:9":"1536 × 1024"};
+  const sizeMap = {"1:1":"1024 × 1024","4:5":"1024 × 1280","3:4":"1008 × 1344","9:16":"1008 × 1792","16:9":"1536 × 864"};
   function buildPrompt(title, description) {
     const platform=$("tg-platform").value, ratio=$("tg-ratio").value, extra=$("tg-extra").value.trim();
     const stock=platform==="stock";
