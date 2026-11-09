@@ -103,6 +103,7 @@
     $("tg-generate").scrollIntoView({behavior:"smooth",block:"center"});
     status("Brief terpilih: "+selectedEvent.title+". Atur platform dan rasio, lalu klik Generate image.","success");
   });
+  $("tg-platform").addEventListener("change",()=>{const defaults={instagram:"4:5",tiktok:"9:16",facebook:"4:5",youtube:"16:9",stock:"4:5"};$("tg-ratio").value=defaults[$("tg-platform").value]||"4:5";});
   $("tg-generate").addEventListener("click",generate);
   $("tg-regenerate").addEventListener("click",generate);
   $("tg-logo").addEventListener("change",e=>{
