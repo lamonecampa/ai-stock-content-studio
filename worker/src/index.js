@@ -56,7 +56,7 @@ export default {
         method:"POST",
         headers:{"Authorization":"Bearer "+env.OPENAI_API_KEY,"Content-Type":"application/json"},
         body:JSON.stringify({
-          model:"gpt-image-2.5-flare",
+          model:"gpt-image-2.6-flare",
           prompt,
           size:imageSize(ratio),
           quality,
@@ -72,7 +72,7 @@ export default {
       }
       const encoded = data?.data?.[0]?.b64_json;
       if (!encoded) return json({error:"OpenAI tidak mengembalikan file gambar."},502,origin);
-      return json({image:"data:image/jpeg;base64,"+encoded, revisedPrompt:data?.data?.[0]?.revised_prompt || null, model:"gpt-image-2.5-flare"},200,origin);
+      return json({image:"data:image/jpeg;base64,"+encoded, revisedPrompt:data?.data?.[0]?.revised_prompt || null, model:"gpt-image-2.6-flare"},200,origin);
     } catch (error) {
       return json({error:"Tidak dapat menghubungi layanan image generation. Coba lagi nanti."},502,origin);
     }
